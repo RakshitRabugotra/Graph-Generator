@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas:hover {
+  display: block;
+  cursor: crosshair;
+}
+
+.center-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+
+#button-container {
+
+}
+
+#head-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
