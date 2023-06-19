@@ -15,14 +15,15 @@ const saveProgress = () => {
         object.vertices.push({
             "x": circle.x,
             "y": circle.y,
-            "radius": circle.radius
+            "radius": circle.radius,
+            "name": circle.name
         })
     }
     // Add all the edges
     for(const edge of edgeList) {
         object.edges.push([
-            {"x": edge[0].x, "y": edge[0].y, "radius": edge[0].radius},
-            {"x": edge[1].x, "y": edge[1].y, "radius": edge[1].radius},
+            {"x": edge[0].x, "y": edge[0].y, "radius": edge[0].radius, "name": edge[0].name},
+            {"x": edge[1].x, "y": edge[1].y, "radius": edge[1].radius, "name": edge[1].name},
         ])
     }
 
@@ -55,7 +56,7 @@ const loadProgress = () => {
     .then(jsonData => {
         // Copy the data found to circle-list and edge-list
         jsonData["vertices"].forEach(vertex => {
-            circleList.push( new Circle(vertex.x, vertex.y, vertex.radius) );
+            circleList.push( new Circle(vertex.x, vertex.y, vertex.radius, vertex.name) );
         });
         jsonData["edges"].forEach(edge => {
             const circle1 = edge[0];
@@ -64,8 +65,8 @@ const loadProgress = () => {
             edgeList.push(new Array(null, null));
 
             circleList.forEach(circle => {
-                if(circle.x === circle1.x && circle.y === circle1.y && circle.radius === circle1.radius) edgeList[edgeList.length-1][0] = circle;
-                if(circle.x === circle2.x && circle.y === circle2.y && circle.radius === circle2.radius) edgeList[edgeList.length-1][1] = circle;
+                if(circle.isEqual(circle1)) edgeList[edgeList.length-1][0] = circle;
+                if(circle.isEqual(circle2)) edgeList[edgeList.length-1][1] = circle;
             });
         });
     });
