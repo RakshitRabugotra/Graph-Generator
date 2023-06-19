@@ -6,12 +6,16 @@ class Circle {
       this.x = x;
       this.y = y;
       this.radius = radius;
-      this.name = name;
+      this.name = (typeof name === 'undefined') ? null : name;
       this.isHighlighted = false;
     }
   
     isNull() {
       return (this.name === null);
+    }
+
+    isEqual(otherCircle) {
+      return this.x === otherCircle.x && this.y === otherCircle.y && this.radius === otherCircle.radius;
     }
 
     setCenter(x, y) {
