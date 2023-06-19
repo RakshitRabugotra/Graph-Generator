@@ -59,8 +59,8 @@ function draw() {
 
 function mousePressed(event) {
   // If we're clicking outside the canvas then don't do anything
-  if(mouseX > WIDTH || mouseX < 0) return false;
-  if(mouseY > HEIGHT || mouseY < 0) return false;
+  if(mouseX > WIDTH || mouseX < 0) return;
+  if(mouseY > HEIGHT || mouseY < 0) return;
 
   // Check if the user right clicked
   let isRightClick = (event.button === 2);
@@ -91,7 +91,11 @@ function mousePressed(event) {
 
   // Else highlight the circle
   if(!circleClicked.isHighlighted) {
+    // Highlight the circle
     circleClicked.isHighlighted = true;
+    // And load the circle's name to the text input
+    vertexNameTextInput.value = (circleClicked.name === null) ? "null" : circleClicked.name;
+    
   } else {
     // If the circle was already highlighted, then delete it
     deleteVertex(circleClicked);
