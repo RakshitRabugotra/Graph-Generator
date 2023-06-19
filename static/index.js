@@ -1,11 +1,19 @@
 // To prevent default behavior on right-mouse-button click
 document.addEventListener('contextmenu', event => event.preventDefault());
 
+// Fetch the input field for the vertex-name
+const vertexNameTextInput = document.getElementById("vertexName");
+
+// To show the directions on the indx page
+const directionParagraph = document.getElementById("direction-para");
+
 /*
 The size of canvas
 */
 let WIDTH = 600;
 let HEIGHT = 600;
+
+const unicodeArrowRight = "\u2192";
 
 /*
 To store the circles and edges
@@ -158,7 +166,15 @@ const findPath = (lastCircle) => {
   this.currentGraph = new Graph(circleList, edgeList);
   shortestPath = this.currentGraph.A_star(start, goal, manhattanDistance);
 
-  console.log(shortestPath);
+
+  // Then create a path string
+  let pathString = shortestPath[shortestPath.length-1].name;
+  for(let i = shortestPath.length-2; i >= 0; i--) {
+    if(shortestPath[i].name === null) continue;
+
+    pathString = `${pathString} ${unicodeArrowRight} ${shortestPath[i].name}`;
+  }
+  directionParagraph.innerHTML = pathString;
 }
 
 
@@ -176,3 +192,31 @@ const clearAll = () => {
 const toggleHideNodes = () => HIDE_NODES = !HIDE_NODES;
 const toggleHideEdges = () => HIDE_EDGES = !HIDE_EDGES;
 const toggleHideAll = () => HIDE_ALL = !HIDE_ALL;
+
+
+/**
+ * Gives the name to the vertex
+ */
+const giveNameToVertex = () => {
+  // Fetch the highlighted circle
+  circleHighlighted = null;
+
+  let i = 0;
+  for(; i < circleList.length; i++) {
+    if(circleList[i].isHighlighted) {
+      circleHighlighted = circleList[i];
+      break;
+    }
+  }
+  // If there are no circles highlighted then return
+  if(circleHighlighted === null) return;
+
+  // Make the circle un-highlighted
+  circleHighlighted.isHighlighted = false;
+
+  // Else assign the input field to the circle's name
+  circleHighlighted.name = vertexNameTextInput.value;
+
+  // Remove the last extra edge created
+  edgeList.pop();
+}
