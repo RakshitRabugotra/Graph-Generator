@@ -126,8 +126,6 @@ class Graph {
             // remove the current node from the openSet
             removeElement(openSet, current);
 
-            console.log("CURRENT: " + current);
-
             for(let neighbor of this.neighbors.get(current)) {
                 // d(current,neighbor) is the weight of the edge from current to neighbor
                 // tentative_gScore is the distance from start to the neighbor through current
