@@ -3,35 +3,44 @@
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/style.css" />
     <meta charset="utf-8" />
-
   </head>
   <body>
-
     <div id="head-container">
       <h1>Graph Generator</h1>
-      <hr>
+      <hr />
     </div>
 
-    <main id="p5-container" class="center-container">
-    </main>
+    <main id="p5-container" class="center-container"></main>
 
     <div id="button-container" class="center-container">
-      <button onclick="saveProgress()">Save Progress</button>
-      <button onclick="loadProgress()">Load Progress</button>
-      <button onclick="clearAll()">Clear All</button>
-      <button onclick="toggleHideAll()">Toggle Hide All</button>
+      <div class="center-container">
+        <button onclick="saveProgress()">Save Progress</button>
+        <button onclick="loadProgress()">Load Progress</button>
+        <button onclick="clearAll()">Clear All</button>
+      </div>
+
+      <div class="center-container">
+        <button onclick="toggleHideAll()">Toggle Hide All</button>
+        <button onclick="toggleUnnamedNodes()">Toggle Unnamed Nodes</button>
+        <button onclick="toggleNamingMode()">Toggle Naming Mode</button>
+      </div>
     </div>
 
-    <div id="direction-container" class=center-container>
+    <div id="direction-container" class="center-container">
       <p id="direction-para"></p>
     </div>
 
-    <div id=input-container class=center-container>
+    <div id="input-container" class="center-container">
       <fieldset>
         <label for="vertexName">Enter the name for vertex:</label>
-        <input type="text" name="vertexName" id="vertexName" placeholder="Vertex Name">
+        <input
+          type="text"
+          name="vertexName"
+          id="vertexName"
+          placeholder="Vertex Name"
+        />
       </fieldset>
 
       <button onclick="giveNameToVertex()">Give name to vertex</button>
@@ -42,8 +51,6 @@
     <script src="../static/index.js"></script>
     <script src="../static/sketch.js"></script>
 
-
     <script src="../static/response-handler.js"></script>
-
   </body>
 </html>
